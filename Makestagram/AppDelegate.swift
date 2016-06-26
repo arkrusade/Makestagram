@@ -14,12 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-    // Set up the Parse SDK
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+  {
+        // Set up the Parse SDK
     let configuration = ParseClientConfiguration {
         $0.applicationId = "FirstApp"
         $0.server = "https://makestagram-parse-jl.herokuapp.com/parse"
+        
     }
     
     Parse.initializeWithConfiguration(configuration)
@@ -35,6 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     } else {
         print("No logged in user :(")
     }
+    let acl = PFACL()
+    acl.publicReadAccess = true
+    PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
+    
+
     return true
   }
 
